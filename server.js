@@ -9,7 +9,7 @@ import { appRouter } from "./src/routers/appRouter.js";
 
 dotenv.config();
 
-const SERVER_PORT = process.env.SERVER_PORT;
+const SERVER_PORT = process.env.SERVER_PORT || 5000;
 
 const DB_URL = process.env.MONGO_URI;
 

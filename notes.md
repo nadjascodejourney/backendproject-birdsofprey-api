@@ -2,23 +2,23 @@
 
 ### Greifvögel:
 
-GET /birds: Alle Greifvögel abrufen
-GET /birds/:id: Einen spezifischen Greifvogel abrufen
+GET /raptors: Alle Greifvögel abrufen
+GET /raptors/:id: Einen spezifischen Greifvogel abrufen
 
-POST /birds: Einen neuen Greifvogel hinzufügen
-PUT /birds/:id: Einen vorhandenen Greifvogel aktualisieren
-DELETE /birds/:id: Einen Greifvogel löschen
+POST /raptors: Einen neuen Greifvogel hinzufügen
+PUT /raptors/:id: Einen vorhandenen Greifvogel aktualisieren
+DELETE /raptors/:id: Einen Greifvogel löschen
 
 #### Weitere Request-Optionen im Bereich Greifvögel:
 
-GET /birds/family: Eine bestimmte Greifvogelfamilie abrufen
-GET /birds/family/genus: Eine bestimmte Gattung einer Familie abrufen
-GET /birds/family/genus/species: Eine bestimmte Spezies einer Gattung abrufen
+GET /raptors/family: Eine bestimmte Greifvogelfamilie abrufen
+GET /raptors/family/genus: Eine bestimmte Gattung einer Familie abrufen
+GET /raptors/family/genus/species: Eine bestimmte Spezies einer Gattung abrufen
 
 ### Verbreitungsgebiet
 
 GET /range: Verbreitungsgebiete
-GET /range/birds: Greifvögel nach Verbreitungsgebieten
+GET /range/raptors: Greifvögel nach Verbreitungsgebieten
 
 ### Falknereien:
 

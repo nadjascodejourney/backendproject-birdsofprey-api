@@ -4,7 +4,7 @@ import express from "express";
 
 export const raptorsRouter = express.Router();
 
-raptorsRouter
+/* raptorsRouter
   .route("/")
   .get(getAllRaptors)
   .post(addRaptor)
@@ -15,3 +15,4 @@ raptorsRouter
   .get(getRaptorById)
   .patch(updateRaptorById)
   .delete(deleteRaptorById);
+ */

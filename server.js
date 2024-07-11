@@ -14,14 +14,10 @@ const DB_URL = process.env.MONGO_URI;
 
 const app = express();
 
+app.use(express.json());
 app.use(cors());
 
-app.get("/error", (req, res, next) => {
-  const error = new Error("Test error");
-  next(error);
-});
-
-app.use(express.json());
+app.use("/", appRouter()); // the path / uses the appRouter function from the appRouter.js file
 
 app.use(errorMiddleware);
 

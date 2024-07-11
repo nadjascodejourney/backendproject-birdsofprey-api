@@ -46,7 +46,7 @@ const raptorSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    weight_g: {
+    weight_gr: {
       type: Number,
       required: true,
     },

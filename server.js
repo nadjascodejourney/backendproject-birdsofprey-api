@@ -17,7 +17,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.use("/", appRouter());
+app.use("/", appRouter()); // the path / uses the appRouter function from the appRouter.js file
 
 app.use(errorMiddleware);
 

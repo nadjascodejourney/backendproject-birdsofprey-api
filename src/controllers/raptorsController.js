@@ -11,7 +11,7 @@ export const getAllRaptors = async (req, res, next) => {
 
 export const addRaptors = async (req, res, next) => {
   try {
-    const raptors = await Raptors.create(req.body);
+    const raptors = await Raptor.create(req.body);
     res.status(201).json(raptors);
   } catch (error) {
     next(error);

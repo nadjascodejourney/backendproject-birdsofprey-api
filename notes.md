@@ -5,7 +5,7 @@
 GET /raptors: Alle Greifvögel abrufen
 GET /raptors/:id: Einen spezifischen Greifvogel abrufen
 
-POST /raptors: Einen neuen Greifvogel hinzufügen
+POST /raptors: Einen neuen Greifvogel hinzufügen (oder mehrere)
 PUT /raptors/:id: Einen vorhandenen Greifvogel aktualisieren
 DELETE /raptors/:id: Einen Greifvogel löschen
 

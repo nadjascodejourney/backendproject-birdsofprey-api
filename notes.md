@@ -62,3 +62,10 @@ GET /health: Status der API überprüfen (z. B. Server-Status, Datenbankverbindu
 - Security
 - Roles
 - Validation
+
+# Learnings
+
+### create() or insertMany()?
+
+- Use create when you need validation and middleware execution and performance is not the main priority. It is ideal for scenarios where you want to insert a few documents at once and perform additional actions before or after saving.
+- Use insertMany if you need high performance when inserting large amounts of documents and can skip validation and middleware execution. It is especially useful for bulk insertions where speed is critical.

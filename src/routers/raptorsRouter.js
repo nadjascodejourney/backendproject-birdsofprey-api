@@ -3,17 +3,22 @@ import express from "express";
 // TODO: Import the functions from the controller file
 import {
   getAllRaptors,
-  addRaptors,
+  addRaptor,
   getRaptorById,
+  updateRaptorById,
+  deleteRaptorById,
+  addMultipleRaptors,
 } from "../controllers/raptorsController.js";
 
 export const raptorsRouter = express.Router();
 
-raptorsRouter.route("/").get(getAllRaptors).post(addRaptors);
-/*  .delete(deleteAllRaptors); */
+raptorsRouter.route("/").get(getAllRaptors).post(addRaptor);
 
-raptorsRouter.route("/:id").get(getRaptorById);
+raptorsRouter
+  .route("/:id")
+  .get(getRaptorById)
+  .delete(deleteRaptorById)
+  .patch(updateRaptorById);
 
-/*   .get(getRaptorById)
-  .patch(updateRaptorById)
-  .delete(deleteRaptorById); */
+/* raptorsRouter.route("/batch").post(addMultipleRaptors);
+ */

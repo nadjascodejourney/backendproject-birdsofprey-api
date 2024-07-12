@@ -17,3 +17,14 @@ export const addRaptors = async (req, res, next) => {
     next(error);
   }
 };
+
+export const getRaptorById = async (req, res, next) => {
+  try {
+    const raptor = await Raptor.findById(req.params.id); // req.params.id is the id from the URL
+    raptor
+      ? res.status(200).json(raptor)
+      : res.status(404).json({ message: "Raptor not found" });
+  } catch (error) {
+    next(error);
+  }
+};

@@ -44,6 +44,7 @@ export const updateRaptorById = async (req, res, next) => {
     const raptor = await Raptor.findByIdAndUpdate(req.params.id, req.body, {
       // req.params.id is the id from the URL, req.body is the data from the request body
       runValidators: true, // run the validators on the update operation; validators are defined in the schema
+      new: true, // return the modified document rather than the original
     });
     raptor
       ? res.status(200).json(raptor)

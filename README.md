@@ -11,3 +11,10 @@ This repository contains the backend for an API managing information about birds
 - Jest: JavaScript testing framework.
 - supertest: SuperAgent-driven library for testing HTTP servers.
 - cors: Express middleware for handling Cross-Origin Resource Sharing.
+
+# Current Implementations:
+
+- Dataschemas
+- Security
+- Roles
+- Validation

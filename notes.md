@@ -1,60 +1,59 @@
 # Birds of Prey Endpoints
 
-## Greifvögel:
+## Raptors:
 
-GET /raptors: Alle Greifvögel abrufen
-GET /raptors/:id: Einen spezifischen Greifvogel abrufen
+GET /raptors: Show all raptors
+GET /raptors/:id: Show a specific raptor
 
-POST /raptors: Einen neuen Greifvogel hinzufügen (oder mehrere)
-PUT /raptors/:id: Einen vorhandenen Greifvogel aktualisieren
-DELETE /raptors/:id: Einen Greifvogel löschen
+POST /raptors: Add a new raptor (or more)
+DELETE /raptors/:id: Delete an existing raptor
+PATCH /raptors/:id: Update an existing raptor
 
-### Weitere Request-Optionen im Bereich Greifvögel:
+### More Request-Options for Raptors:
 
-GET /raptors/family: Eine bestimmte Greifvogelfamilie abrufen
-GET /raptors/family/genus: Eine bestimmte Gattung einer Familie abrufen
-GET /raptors/family/genus/species: Eine bestimmte Spezies einer Gattung abrufen
-
-## Verbreitungsgebiet
-
-GET /range: Verbreitungsgebiete
-GET /range/raptors: Greifvögel nach Verbreitungsgebieten
+GET /raptors/family: Show a raptor family
+GET /raptors/family/genus: Show raptor genera
+GET /raptors/family/genus/species: Show raptor species
 
 ## Falknereien:
 
-GET /falconries: Alle Falknereien abrufen
-GET /falconries/:id: Informationen zu einer spezifischen Falknerei abrufen
-POST /falconries: Eine neue Falknerei hinzufügen (nur für Admins oder spezielle Rollen)
-PUT /falconries/:id: Informationen einer Falknerei aktualisieren (nur für Admins oder spezielle Rollen)
-DELETE /falconries/:id: Eine Falknerei löschen (nur für Admins oder spezielle Rollen)
+GET /falconries: Show all Falconries
+GET /falconries/:id: Show specific Falconries
+POST /falconries: Add a new Falconry (only authorized users)
+PATCH /falconries/:id: Update existing falconry (only authorized users)
+DELETE /falconries/:id: Delete Falconry (only authorized users)
 
 ## Benutzer:
 
-GET /users: Alle Benutzer abrufen
-GET /users/:id: Informationen zu einem spezifischen Benutzer abrufen
-POST /users: Einen neuen Benutzer hinzufügen
-PUT /users/:id: Informationen eines Benutzers aktualisieren
-DELETE /users/:id: Einen Benutzer löschen
-
-## Authentifizierung und Autorisierung:
-
-POST /auth/login: Benutzer anmelden
-POST /auth/logout: Benutzer abmelden
-POST /auth/register: Neuen Benutzer registrieren
+GET /users: Show all users
+GET /users/:id: Show specific user
+POST /users: Add a new user
+PUT /users/:id: update an existing user
+DELETE /users/:id: delete specific user
 
 ## Beobachtungen:
 
-GET /observations: Alle Beobachtungen abrufen
-GET /observations/:id: Eine spezifische Beobachtung abrufen
-POST /observations: Eine neue Beobachtung hinzufügen
-PUT /observations/:id: Eine vorhandene Beobachtung aktualisieren
-DELETE /observations/:id: Eine Beobachtung löschen
+GET /observations:: Show all observations
+GET /observations/:id: show specific observations
+POST /observations: add a new observation
+PUT /observations/:id: update an existing observation
+DELETE /observations/:id: delete observation
 
 ## Sonstige Routen:
 
-GET /stats: Statistiken über Greifvogelarten oder Beobachtungen abrufen
-GET /search: Suche nach Greifvögeln oder Beobachtungen basierend auf bestimmten Kriterien
-GET /health: Status der API überprüfen (z. B. Server-Status, Datenbankverbindung)
+GET /search: Search
+GET /events: Events referred to raptors
+GET /articles: articles referred to raptors
+
+## Images
+
+- Uploadfeature
+
+# Authentifizierung und Autorisierung:
+
+- login
+- logout
+- register
 
 # Security
 

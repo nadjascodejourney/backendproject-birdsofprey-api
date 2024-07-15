@@ -7,7 +7,7 @@ import {
   getRaptorById,
   updateRaptorById,
   deleteRaptorById,
-  addMultipleRaptors,
+  /* addMultipleRaptors, */
 } from "../controllers/raptorsController.js";
 
 export const raptorsRouter = express.Router();
@@ -20,5 +20,4 @@ raptorsRouter
   .delete(deleteRaptorById)
   .patch(updateRaptorById);
 
-/* raptorsRouter.route("/batch").post(addMultipleRaptors);
- */
+/* raptorsRouter.route("/batch").post(addMultipleRaptors);*/

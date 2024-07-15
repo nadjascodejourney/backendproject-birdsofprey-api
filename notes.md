@@ -1,6 +1,6 @@
 # Birds of Prey Endpoints
 
-### Greifvögel:
+## Greifvögel:
 
 GET /raptors: Alle Greifvögel abrufen
 GET /raptors/:id: Einen spezifischen Greifvogel abrufen
@@ -9,18 +9,18 @@ POST /raptors: Einen neuen Greifvogel hinzufügen (oder mehrere)
 PUT /raptors/:id: Einen vorhandenen Greifvogel aktualisieren
 DELETE /raptors/:id: Einen Greifvogel löschen
 
-#### Weitere Request-Optionen im Bereich Greifvögel:
+### Weitere Request-Optionen im Bereich Greifvögel:
 
 GET /raptors/family: Eine bestimmte Greifvogelfamilie abrufen
 GET /raptors/family/genus: Eine bestimmte Gattung einer Familie abrufen
 GET /raptors/family/genus/species: Eine bestimmte Spezies einer Gattung abrufen
 
-### Verbreitungsgebiet
+## Verbreitungsgebiet
 
 GET /range: Verbreitungsgebiete
 GET /range/raptors: Greifvögel nach Verbreitungsgebieten
 
-### Falknereien:
+## Falknereien:
 
 GET /falconries: Alle Falknereien abrufen
 GET /falconries/:id: Informationen zu einer spezifischen Falknerei abrufen
@@ -28,7 +28,7 @@ POST /falconries: Eine neue Falknerei hinzufügen (nur für Admins oder speziell
 PUT /falconries/:id: Informationen einer Falknerei aktualisieren (nur für Admins oder spezielle Rollen)
 DELETE /falconries/:id: Eine Falknerei löschen (nur für Admins oder spezielle Rollen)
 
-### Benutzer:
+## Benutzer:
 
 GET /users: Alle Benutzer abrufen
 GET /users/:id: Informationen zu einem spezifischen Benutzer abrufen
@@ -36,13 +36,13 @@ POST /users: Einen neuen Benutzer hinzufügen
 PUT /users/:id: Informationen eines Benutzers aktualisieren
 DELETE /users/:id: Einen Benutzer löschen
 
-### Authentifizierung und Autorisierung:
+## Authentifizierung und Autorisierung:
 
 POST /auth/login: Benutzer anmelden
 POST /auth/logout: Benutzer abmelden
 POST /auth/register: Neuen Benutzer registrieren
 
-### Beobachtungen:
+## Beobachtungen:
 
 GET /observations: Alle Beobachtungen abrufen
 GET /observations/:id: Eine spezifische Beobachtung abrufen
@@ -50,22 +50,40 @@ POST /observations: Eine neue Beobachtung hinzufügen
 PUT /observations/:id: Eine vorhandene Beobachtung aktualisieren
 DELETE /observations/:id: Eine Beobachtung löschen
 
-### Sonstige Routen:
+## Sonstige Routen:
 
 GET /stats: Statistiken über Greifvogelarten oder Beobachtungen abrufen
 GET /search: Suche nach Greifvögeln oder Beobachtungen basierend auf bestimmten Kriterien
 GET /health: Status der API überprüfen (z. B. Server-Status, Datenbankverbindung)
 
-# Further Implementations:
-
-- Dataschemas
-- Security
-- Roles
-- Validation
-
 # Learnings
+
+## Mongoose
 
 ### create() or insertMany()?
 
 - Use create when you need validation and middleware execution and performance is not the main priority. It is ideal for scenarios where you want to insert a few documents at once and perform additional actions before or after saving.
 - Use insertMany if you need high performance when inserting large amounts of documents and can skip validation and middleware execution. It is especially useful for bulk insertions where speed is critical.
+
+### SchemaTypes
+
+#### mongoose-autopopulate plugin
+
+- You can add any property you want to your SchemaType options. Many plugins rely on custom SchemaType options. For example, the mongoose-autopopulate plugin automatically populates paths if you set autopopulate: true in your SchemaType options. Mongoose comes with support for several built-in SchemaType options, like lowercase in the above example.
+- [Mongoose-Autopopulate](https://plugins.mongoosejs.io/plugins/autopopulate)
+
+#### Dates in mongoose Schemas
+
+- Built-in Date methods are not hooked into the mongoose change tracking logic which in English means that if you use a Date in your document and modify it with a method like setMonth(), mongoose will be unaware of this change and doc.save() will not persist this modification. If you must modify Date types using built-in methods, tell mongoose about the change with doc.markModified('pathToYourDate') before saving.
+
+```js
+const Eventdate = mongoose.model('Eventdate', { dueDate: Date });
+const doc = await Eventdate.findOne();
+doc.dueDate.setMonth(3);
+await doc.save(); // THIS DOES NOT SAVE YOUR CHANGE
+
+doc.markModified('dueDate');
+await doc.save(); // works
+´´´
+
+```

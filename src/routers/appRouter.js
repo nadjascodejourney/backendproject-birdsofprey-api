@@ -4,14 +4,15 @@ import express from "express";
 
 import { raptorsRouter } from "./raptorsRouter.js";
 /* 
-import { observationRouter } from "./observationRouter.js";
 import { falconriesRouter } from "./falconriesRouter.js";
+import { observationRouter } from "./observationRouter.js";
+
  */
 export const appRouter = express.Router();
 
 appRouter.use("/raptors", raptorsRouter);
 
 /* 
-appRouter.use("/observations", observationRouter);
 appRouter.use("/falconries", falconriesRouter); 
+appRouter.use("/observations", observationRouter);
 */

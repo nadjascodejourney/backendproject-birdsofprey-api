@@ -42,8 +42,8 @@ export const getRaptorById = async (req, res, next) => {
 export const updateRaptorById = async (req, res, next) => {
   try {
     const raptor = await Raptor.findByIdAndUpdate(req.params.id, req.body, {
-      // req.params.id is the id from the URL, req.body is the data from the request body
-      runValidators: true, // run the validators on the update operation; validators are defined in the schema
+      // req.params.id is the id from the URL, req.body is data from request body
+      runValidators: true, // run validators on the update operation; validators are defined in the schema
       new: true, // return the modified document rather than the original
     });
     raptor
@@ -54,6 +54,7 @@ export const updateRaptorById = async (req, res, next) => {
   }
 };
 
+//hard delete
 export const deleteRaptorById = async (req, res, next) => {
   try {
     const raptor = await Raptor.findByIdAndDelete(req.params.id);

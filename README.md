@@ -8,6 +8,8 @@ This repository contains the backend for an API managing information about birds
 - Express: Fast, minimalist web framework for Node.js.
 - MongoDB: NoSQL database for storing bird of prey data.
 - Mongoose: MongoDB object modeling.
+- Zod: Schema Declaration and validation library
+- @zodyac/zod-mongoose: Zod to Mongoose Schema Converter
 - Jest: JavaScript testing framework.
 - supertest: SuperAgent-driven library for testing HTTP servers.
 - cors: Express middleware for handling Cross-Origin Resource Sharing.

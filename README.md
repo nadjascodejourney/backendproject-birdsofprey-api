@@ -1,5 +1,7 @@
 # Building an API for CRUD Operations with birds of prey data
 
+![Heroimage](heroimage-1.png)
+
 This repository contains the backend for an API managing information about birds of prey. It will allow retrieving bird of prey and falconries data, as well as adding, updating, and deleting entries. Additionally, users can log bird watching observations, and administrators have the ability to manage regional falconries.
 
 ## Used Technologies:

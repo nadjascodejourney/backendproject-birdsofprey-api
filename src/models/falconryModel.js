@@ -8,7 +8,9 @@ const falconrySchemaFields = {
     state: { type: String, required: true },
     country: { type: String, required: true },
   },
-  falconry_email: { type: String, required: true }, //BUG: email not send
+  numberOfRaptors: { type: Number, required: true },
+  falconry_email: { type: String, required: true },
+  // TODO populate raptors
 };
 
 const falconrySchema = new mongoose.Schema(falconrySchemaFields);

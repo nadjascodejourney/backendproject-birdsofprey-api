@@ -87,3 +87,7 @@ await doc.save(); // works
 ´´´
 
 ```
+
+### Zod and Zod-to-Mongoose-Converter npm package
+
+- Found and tried an interesting package to convert zod object into a mongoose schmema: [@zodyac/zod-mongoose: Zod to Mongoose Schema Converter](https://www.npmjs.com/package/@zodyac/zod-mongoose). Finally, I didn´t align with my specific needs due to limitations and overhead in terms of the time it costs to dig deep into the code under the hood, so that I can adapt some things based on my use case and the benefit. I realised, that I am quicker and more straightforward, when I just write the model by myself. Also, by now, this package is quite new and I can´t predict, how the maintenance will be in the future.But I'm definitely keeping an eye on it and I could well imagine using it for larger yet simple models one day.

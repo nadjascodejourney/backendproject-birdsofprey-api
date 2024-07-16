@@ -1,7 +1,11 @@
 import { Falconry } from "../models/falconryModel.js";
 
-import { falconryZValidation } from "../utils/falconryZValidation.js";
+import {
+  falconryZValidation,
+  falconryPartialZValidation,
+} from "../utils/falconryZValidation.js";
 
+// GET ALL
 export const getAllFalconries = async (req, res, next) => {
   try {
     const falconries = await Falconry.find();
@@ -11,6 +15,7 @@ export const getAllFalconries = async (req, res, next) => {
   }
 };
 
+// POST
 export const addFalconry = async (req, res, next) => {
   try {
     const validatedFalconryData = falconryZValidation.parse(req.body);
@@ -23,6 +28,7 @@ export const addFalconry = async (req, res, next) => {
   }
 };
 
+// GET SINGLE
 export const getFalconryById = async (req, res, next) => {
   try {
     const falconry = await Falconry.findById(req.params.id);
@@ -34,17 +40,25 @@ export const getFalconryById = async (req, res, next) => {
   }
 };
 
+// PATCH
 export const updateFalcontrById = async (req, res, next) => {
   try {
-    const validatedFalconryData = falconryZValidation.parse(req.body);
+    const validatedFalconryData = falconryPartialZValidation.parse(req.body); // validate and parse the incoming data with parse() from zod
+
+    /*     const validationResult = falconryPartialZValidation.safeParse(req.body); // Now check for validation errors with safeParse() contains additional information about the validationprocess and potential errors (success: true or false)
+    if (!validationResult.success) {
+      return res.status(400).json(validationResult.error.errors);
+    } */
+
     const falconry = await Falconry.findByIdAndUpdate(
       req.params.id,
-      validatedFalconryData,
+      { $set: validatedFalconryData },
       {
         runValidators: true,
         new: true,
       }
-    );
+    ).populate("raptors");
+
     falconry
       ? res.status(200).json(falconry)
       : res.status(404).json({ message: "Falconry not found" });
@@ -53,7 +67,33 @@ export const updateFalcontrById = async (req, res, next) => {
   }
 };
 
-// hard delete
+// PUT
+export const completeUpdateById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const validationResult = falconryZValidation.safeParse(req.body);
+
+    if (!validationResult.success) {
+      return res.status(400).json(validationResult.error.errors);
+    }
+
+    const updatedFalconry = await Falconry.findByIdAndUpdate(
+      id,
+      validationResult.data,
+      { new: true }
+    ).populate("raptors");
+
+    if (!updatedFalconry) {
+      return res.status(404).json({ message: "Falconry not found" });
+    }
+
+    res.status(200).json(updatedFalconry);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// hard DELETE
 export const deleteFalconryById = async (req, res, next) => {
   try {
     const falconry = await Falconry.findByIdAndDelete(req.params.id);

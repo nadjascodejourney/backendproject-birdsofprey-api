@@ -1,0 +1,30 @@
+{
+  "falconries": [
+    {
+      "falconry_name": "Vogelwild",
+      "falconry_address": {
+        "street": "Am Kiefel 2",
+        "city": "Hemau",
+        "state": "Bavaria",
+        "country": "Germany"
+      },
+      "numberOfRaptors": 9,
+      "falconry_email": "info@vogelwild.net",
+      "raptors": [],
+      "events": []
+    },
+    {
+      "falconry_name": "Falkenhof Rosenburg",
+      "falconry_address": {
+        "street": "Schlossweg 7",
+        "city": "Riedenburg",
+        "state": "Bavaria",
+        "country": "Germany"
+      },
+      "numberOfRaptors": 15,
+      "falconry_email": "kontakt@falkenhof-rosenburg.de",
+      "raptors": [],
+      "events": []
+    }
+  ]
+}

@@ -46,7 +46,7 @@ export const falconryZValidation = z.object({
     .positive(),
   falconry_email: z.string().email({ message: "Invalid E-Mail Address" }),
   // email is a method from zod that validates if the string is an email
-  falconry_website: z.string().url({ message: "invalid url" }), //! not saving yet, TODO: check
+  /* falconry_website: z.string().url({ message: "invalid url" }),  */ //! not saving yet, TODO: check
   // url is a method from zod that validates if the string is an url
   numberOfEmployees: z
     .number({
@@ -54,7 +54,15 @@ export const falconryZValidation = z.object({
     }) //! not saving yet, TODO: check
     .int()
     .positive(),
+  raptors: z
+    .array(
+      z.string().regex(/^[0-9a-fA-F]{24}$/, { message: "Invalid ObjectId" })
+    )
+    .optional(),
 });
+
+// For partially changing an object with patch
+export const falconryPartialZValidation = falconryZValidation.partial();
 
 /* const zFalconrySchema = zodSchema(falconrySchema);
 export const Falconry = model("Falconry", zFalconrySchema);

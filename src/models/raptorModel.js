@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Schema } from "mongoose";
 
 const raptorSchema = new mongoose.Schema(
   {
@@ -63,7 +64,7 @@ const raptorSchema = new mongoose.Schema(
       trim: true,
     },
     associated_falconries: {
-      type: [String],
+      type: [{ type: Schema.Types.ObjectId, ref: "Falconry" }],
       lowercase: true,
       trim: true,
     },
@@ -88,3 +89,9 @@ const raptorSchema = new mongoose.Schema(
 );
 
 export const Raptor = mongoose.model("Raptor", raptorSchema);
+
+Raptor.find()
+  .findOne({ _id: "668ff4129b80fb86bec076d7" })
+  .populate("associated_falconries")
+  .then((entries) => console.log(entries))
+  .catch((error) => console.log(error));

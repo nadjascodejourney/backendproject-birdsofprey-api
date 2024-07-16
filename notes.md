@@ -107,6 +107,14 @@ await doc.save(); // works
 
 ```
 
-### Zod and Zod-to-Mongoose-Converter npm package
+### Zod
+
+####
+
+- **parse() and safeParse()**: The use of *parse()* versus *safeParse()* depends on specific requirements and the error handling in the application: 
+parse(): Well suited if you are sure that the data is correct and if an exception on invalid data is helpful to indicate errors. 
+safeParse(): Provides a safer way to validate that checks the validation status without throwing an exception. This is particularly useful if you want to validate data without the need for exception handling or if you want to process the detailed validation error directly.
+
+#### Zod-to-Mongoose-Converter npm package
 
 - Found and tried an interesting package to convert zod object into a mongoose schmema: [@zodyac/zod-mongoose: Zod to Mongoose Schema Converter](https://www.npmjs.com/package/@zodyac/zod-mongoose). Finally, I didn´t align with my specific needs due to limitations and overhead in terms of the time it costs to dig deep into the code under the hood, so that I can adapt some things based on my use case and the benefit. I realised, that I am quicker and more straightforward, when I just write the model by myself. Also, by now, this package is quite new and I can´t predict, how the maintenance will be in the future.But I'm definitely keeping an eye on it and I could well imagine using it for larger yet simple models one day.

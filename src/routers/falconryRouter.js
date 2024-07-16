@@ -6,6 +6,7 @@ import {
   getFalconryById,
   updateFalcontrById,
   deleteFalconryById,
+  completeUpdateById,
 } from "../controllers/falconriesController.js";
 
 export const falconryRouter = express.Router();
@@ -16,4 +17,5 @@ falconryRouter
   .route("/:id")
   .get(getFalconryById)
   .patch(updateFalcontrById)
-  .delete(deleteFalconryById);
+  .delete(deleteFalconryById)
+  .put(completeUpdateById);

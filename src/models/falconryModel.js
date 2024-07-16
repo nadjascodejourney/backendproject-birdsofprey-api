@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Schema } from "mongoose";
 
 const falconrySchemaFields = {
   falconry_name: { type: String, required: true },
@@ -10,9 +11,17 @@ const falconrySchemaFields = {
   },
   numberOfRaptors: { type: Number, required: true },
   falconry_email: { type: String, required: true },
-  // TODO populate raptors
+  raptors: [{ type: Schema.Types.ObjectId, ref: "Raptor" }], // populate
 };
 
 const falconrySchema = new mongoose.Schema(falconrySchemaFields);
 
 export const Falconry = mongoose.model("Falconry", falconrySchema);
+
+// To test
+/* Falconry.find()
+  .findOne({ _id: "669514227a9e593fc579db23" })
+  .populate("raptors")
+  .then((entries) => console.log(entries))
+  .catch((error) => console.log(error));
+ */

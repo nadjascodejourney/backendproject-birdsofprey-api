@@ -10,8 +10,7 @@
       },
       "numberOfRaptors": 9,
       "falconry_email": "info@vogelwild.net",
-      "raptors": [],
-      "events": []
+      "raptors": []
     },
     {
       "falconry_name": "Falkenhof Rosenburg",
@@ -23,8 +22,7 @@
       },
       "numberOfRaptors": 15,
       "falconry_email": "kontakt@falkenhof-rosenburg.de",
-      "raptors": [],
-      "events": []
+      "raptors": []
     }
   ]
 }

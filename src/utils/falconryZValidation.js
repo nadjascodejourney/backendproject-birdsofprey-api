@@ -1,4 +1,4 @@
-import { number, z } from "zod"; // z is a function that returns an object with a bunch of methods from the zod library (validation library)
+import { z } from "zod"; // z is a function that returns an object with a bunch of methods from the zod library (validation library)
 
 /* import { zodSchema } from "@zodyac/zod-mongoose"; // Zod to mongoose schema converter */
 
@@ -61,7 +61,7 @@ export const falconryZValidation = z.object({
     .optional(),
 });
 
-// For partially changing an object with patch
+// For partially updating an object with patch
 export const falconryPartialZValidation = falconryZValidation.partial();
 
 /* const zFalconrySchema = zodSchema(falconrySchema);

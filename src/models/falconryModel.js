@@ -14,7 +14,9 @@ const falconrySchemaFields = {
   raptors: [{ type: Schema.Types.ObjectId, ref: "Raptor" }], // populate
 };
 
-const falconrySchema = new mongoose.Schema(falconrySchemaFields);
+const falconrySchema = new mongoose.Schema(falconrySchemaFields, {
+  timestamps: true,
+});
 
 export const Falconry = mongoose.model("Falconry", falconrySchema);
 

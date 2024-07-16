@@ -90,8 +90,9 @@ const raptorSchema = new mongoose.Schema(
 
 export const Raptor = mongoose.model("Raptor", raptorSchema);
 
-Raptor.find()
+/* Raptor.find()
   .findOne({ _id: "668ff4129b80fb86bec076d7" })
   .populate("associated_falconries")
   .then((entries) => console.log(entries))
   .catch((error) => console.log(error));
+ */

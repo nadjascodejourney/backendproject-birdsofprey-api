@@ -5,10 +5,18 @@ export const userZValidation = z.object({
     .string({
       required_error: "Username is required",
       invalid_type_error: "Username must be a string",
+      unique_error: "Username already exists",
     })
     .min(3, { message: "must be at least 5 characters long" })
     .trim(),
-  email: z.string().email({ message: "Invalid E-Mail Address" }),
+  email: z
+    .string({
+      // email must be unique
+      required_error: "E-Mail is required",
+      invalid_type_error: "E-Mail must have this format: xxx@xxx.xx",
+      unique_error: "E-Mail already exists",
+    })
+    .email({ message: "Invalid E-Mail Address" }),
   password: z
     .string()
     .min(8, { message: "must be at least 8 characters long" }),

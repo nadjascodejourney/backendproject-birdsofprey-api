@@ -3,6 +3,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet"; // helps secure Express apps by setting HTTP headers
+import cookieParser from "cookie-parser";
 
 // custom
 import { connectDB } from "./src/config/connectDB.js";
@@ -20,6 +21,7 @@ const app = express();
 app.use(express.json()); // must be before the appRouter, otherwise the request body will be undefined in the HTTP POST request
 app.use(cors());
 app.use(helmet()); // sets HTTP headers to secure the app
+app.use(cookieParser());
 
 app.use("/", appRouter); // the path / uses the appRouter function from the appRouter.js file
 

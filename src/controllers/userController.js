@@ -54,7 +54,7 @@ export const userregister = async (req, res, next) => {
     // Save the user to the database
     await newUser.save();
 
-    //TODO: Send an email with the email verification token
+    // Send an email with the email verification
     sendEmailVerification(email, emailVerificationToken);
 
     // Send a success message
@@ -74,6 +74,11 @@ export const userlogin = async (req, res, next) => {
     // Check if the user exists
     if (!user) {
       return res.status(404).json({ message: "User not found" });
+    }
+
+    // Check if the user is verified by email verification (by default isVerified is false)
+    if (!user.isVerified) {
+      return res.status(401).json({ message: "Verify your Account" }); //? 401 or 403?  401 is more appropriate because the user is not authenticated yet
     }
 
     // Check if the password is correct
@@ -100,7 +105,7 @@ export const userlogin = async (req, res, next) => {
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
       secure: true,
-      sameSite: "Lax",
+      sameSite: "Strict",
       maxAge: 1000 * 60 * 60, // 1 hour
     });
 
@@ -120,16 +125,35 @@ export const userlogout = async (req, res, next) => {
   }
 };
 
-// TODO: Implement the verifyemail controller
 export const verifyemail = async (req, res, next) => {
   try {
     const { token } = req.query; // get the token from the query string in the URL (e.g. /verifyemail?token=123456)
 
+    // check if the token is missing
+    if (!token) {
+      return res.status(400).json({ message: "Token is missing" });
+    }
+
     // Find the user with the emailVerificationToken
     const user = await User.findOne({
       emailVerificationToken: token,
-      emailVerificationTokenExpiry: { $gt: Date.now() }, //
+      emailVerificationTokenExpiry: { $gt: Date.now() }, // check if the token is still valid (expiry date is in the future)
     });
+
+    // check if the user exists
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Update the user's isVerified field to true
+    user.isVerified = true;
+    user.emailVerificationToken = undefined; // undefine is better than null in this case, because it is a falsy value and can be checked with if (user.emailVerificationToken); null is a truthy value and this might lead to bugs
+    user.emailVerificationTokenExpiry = undefined; // same here
+
+    await user.save(); // save the updated user to the database
+
+    // Send a success message
+    res.status(200).json({ message: "Email verified successfully" });
   } catch (error) {
     next(error);
   }

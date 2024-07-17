@@ -17,7 +17,7 @@ const transporter = nodemailer.createTransport({
 
 // Send an email with the email verification token
 export const sendEmailVerification = async (email, emailVerificationToken) => {
-  const verificationUrl = `${process.env.CLIENT_URL}/verifyemail?token=${emailVerificationToken}`;
+  const verificationUrl = `${process.env.CLIENT_URL}/verifyemail?token=${emailVerificationToken}`; //? should this variable be inside the function or rather outside? Depends on the implementation: if the function is only used in one place, it's better to keep it inside the function
 
   try {
     const mailOptions = {
@@ -39,5 +39,3 @@ export const sendEmailVerification = async (email, emailVerificationToken) => {
     console.error(error);
   }
 };
-
-// Verify the token and update the user's isVerified field

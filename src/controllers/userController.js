@@ -2,12 +2,14 @@ import { User } from "../models/userModel.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
-import e from "express";
 
 /* import {
   userZValidation,
   userPartialZValidation,
 } from "../utils/userZValidation.js"; */
+
+import { generateEmailVerificationToken } from "../utils/generateEmailVerificationToken.js";
+import { sendEmailVerification } from "../utils/verificationEmailService.js";
 
 // Load the secret key from the .env file
 dotenv.config();
@@ -35,16 +37,25 @@ export const userregister = async (req, res, next) => {
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10); // bcrypt.hash() hashes the password with a salt of 10 rounds
 
+    const emailVerificationToken = generateEmailVerificationToken();
+    const emailVerificationTokenExpiry = Date.now() + 3600000; // 1 hour
+
     // Create a new user
     const newUser = new User({
+      // id
       username,
       email,
       password: hashedPassword,
       role,
+      emailVerificationToken,
+      emailVerificationTokenExpiry,
     });
 
     // Save the user to the database
     await newUser.save();
+
+    //TODO: Send an email with the email verification token
+    sendEmailVerification(email, emailVerificationToken);
 
     // Send a success message
     res.status(201).json({ message: "User created successfully" });
@@ -104,6 +115,21 @@ export const userlogout = async (req, res, next) => {
   try {
     res.clearCookie("accessToken");
     res.status(200).json({ message: "Logout successful" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// TODO: Implement the verifyemail controller
+export const verifyemail = async (req, res, next) => {
+  try {
+    const { token } = req.query; // get the token from the query string in the URL (e.g. /verifyemail?token=123456)
+
+    // Find the user with the emailVerificationToken
+    const user = await User.findOne({
+      emailVerificationToken: token,
+      emailVerificationTokenExpiry: { $gt: Date.now() }, //
+    });
   } catch (error) {
     next(error);
   }

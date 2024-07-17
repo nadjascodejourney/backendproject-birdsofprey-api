@@ -26,6 +26,9 @@ export const userZValidation = z.object({
       z.string().regex(/^[0-9a-fA-F]{24}$/, { message: "Invalid ObjectId" })
     )
     .optional(),
+  isVerified: z.boolean().default(false),
+  emailVerificationToken: z.string().optional(),
+  emailVerificationTokenExpiry: z.date().optional(),
 });
 
 // for partially updating a user

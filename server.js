@@ -18,7 +18,9 @@ const DB_URL = process.env.MONGO_URI;
 
 const app = express();
 
-app.use(express.json()); // must be before the appRouter, otherwise the request body will be undefined in the HTTP POST request
+app.use(express.json()); // parse body; must be before the appRouter, otherwise the request body will be undefined in the HTTP POST request
+app.use(express.urlencoded({ extended: true }));
+
 app.use(cors());
 app.use(helmet()); // sets HTTP headers to secure the app
 app.use(cookieParser());

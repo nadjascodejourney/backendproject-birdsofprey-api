@@ -17,11 +17,11 @@ export const falconryRouter = express.Router();
 falconryRouter
   .route("/")
   .get(getAllFalconries)
-  .post(accessTokenCheck, addFalconry); // accessTokenCheck is a middleware function that checks if the user has a valid access token to access the route and post a new falconry
+  .post(accessTokenCheck, roleCheck("falconer"), addFalconry); // accessTokenCheck is a middleware function that checks if the user has a valid access token to access the route and post a new falconry
 
 falconryRouter
   .route("/:id")
   .get(getFalconryById)
-  .patch(updateFalcontrById)
-  .delete(roleCheck("admin"), deleteFalconryById)
-  .put(completeUpdateById);
+  .patch(accessTokenCheck, updateFalcontrById)
+  .delete(accessTokenCheck, roleCheck("admin"), deleteFalconryById)
+  .put(accessTokenCheck, completeUpdateById);

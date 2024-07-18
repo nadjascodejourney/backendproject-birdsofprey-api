@@ -4,7 +4,7 @@ export const getAllRaptors = async (req, res, next) => {
   try {
     const raptors = await Raptor.find()
       .populate("associated_falconries")
-      .exec();
+      .exec(); // exec is used to execute the query from the populate method; it is a promise that resolves to the populated document
     res.status(200).json(raptors);
   } catch (error) {
     next(error);

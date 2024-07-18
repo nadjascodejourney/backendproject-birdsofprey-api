@@ -15,6 +15,31 @@ import { sendEmailVerification } from "../utils/verificationEmailService.js";
 dotenv.config();
 const secretKey = process.env.JWTSECRET;
 
+// BASIC ROUTES
+export const getAllUsers = async (req, res, next) => {
+  try {
+    const allUsers = await User.find();
+    allUsers
+      ? res.status(200).json(allUsers)
+      : res.status(404).json({ message: "No users found in the database" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getUserById = async (req, res, next) => {
+  try {
+    const singleUser = await User.findById(req.params.id);
+
+    singleUser
+      ? res.status(200).json(singleUser)
+      : res.status(404).json({ message: "User not found" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// FURTHER ROUTES
 export const userregister = async (req, res, next) => {
   try {
     const { username, email, password, role } = req.body;
@@ -110,7 +135,7 @@ export const userlogin = async (req, res, next) => {
     });
 
     // Send the token back to the client
-    res.json({ accessToken });
+    res.status(201).json({ accessToken, message: "Login successful" });
   } catch (error) {
     next(error);
   }

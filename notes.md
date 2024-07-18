@@ -2,48 +2,48 @@
 
 ## Raptors:
 
-GET /raptors: Show all raptors
-GET /raptors/:id: Show a specific raptor
+- [x] GET /raptors: Show all raptors
+- [x] GET /raptors/:id: Show a specific raptor
 
-POST /raptors: Add a new raptor (or more)
-DELETE /raptors/:id: Delete an existing raptor
-PATCH /raptors/:id: Update an existing raptor
+- [x] POST /raptors: Add a new raptor (or more)
+- [x] DELETE /raptors/:id: Delete an existing raptor
+- [x] PATCH /raptors/:id: Update an existing raptor
 
 ### More Request-Options for Raptors:
 
-GET /raptors/family: Show a raptor family
-GET /raptors/family/genus: Show raptor genera
-GET /raptors/family/genus/species: Show raptor species
+- [ ] GET /raptors/family: Show a raptor family
+- [ ] GET /raptors/family/genus: Show raptor genera
+- [ ] GET /raptors/family/genus/species: Show raptor species
 
 ## Falknereien:
 
-GET /falconries: Show all Falconries
-GET /falconries/:id: Show specific Falconries
-POST /falconries: Add a new Falconry (only authorized users)
-PATCH /falconries/:id: Update existing falconry (only authorized users)
-DELETE /falconries/:id: Delete Falconry (only authorized users)
+- [x] GET /falconries: Show all Falconries
+- [x] GET /falconries/:id: Show specific Falconries
+- [x] POST /falconries: Add a new Falconry (only authorized users)
+- [x] PATCH /falconries/:id: Update existing falconry (only authorized users)
+- [x] DELETE /falconries/:id: Delete Falconry (only authorized users)
 
 ## Benutzer:
 
-GET /users: Show all users
-GET /users/:id: Show specific user
-POST /users: Add a new user
-PUT /users/:id: update an existing user
-DELETE /users/:id: delete specific user
+- [x] GET /users: Show all users
+- [x] GET /users/:id: Show specific user
+- [ ] POST /users: Add a new user
+- [ ] PUT /users/:id: update an existing user
+- [ ] DELETE /users/:id: delete specific user
 
 ## Beobachtungen:
 
-GET /observations:: Show all observations
-GET /observations/:id: show specific observations
-POST /observations: add a new observation
-PUT /observations/:id: update an existing observation
-DELETE /observations/:id: delete observation
+- [ ] GET /observations:: Show all observations
+- [ ] GET /observations/:id: show specific observations
+- [ ] POST /observations: add a new observation
+- [ ] PUT /observations/:id: update an existing observation
+- [ ] DELETE /observations/:id: delete observation
 
 ## Sonstige Routen:
 
-GET /search: Search
-GET /events: Events referred to raptors
-GET /articles: articles referred to raptors
+- [ ] GET /search: Search
+- [ ] GET /events: Events referred to raptors
+- [ ] GET /articles: articles referred to raptors
 
 ## Images
 
@@ -51,9 +51,10 @@ GET /articles: articles referred to raptors
 
 # Authentifizierung und Autorisierung:
 
-- login
-- logout
-- register
+- [x] login
+- [x] logout
+- [x] register
+- [x] verify
 
 # Security
 
@@ -111,9 +112,9 @@ await doc.save(); // works
 
 ####
 
-- **parse() and safeParse()**: The use of *parse()* versus *safeParse()* depends on specific requirements and the error handling in the application: 
-parse(): Well suited if you are sure that the data is correct and if an exception on invalid data is helpful to indicate errors. 
-safeParse(): Provides a safer way to validate that checks the validation status without throwing an exception. This is particularly useful if you want to validate data without the need for exception handling or if you want to process the detailed validation error directly.
+- **parse() and safeParse()**: The use of _parse()_ versus _safeParse()_ depends on specific requirements and the error handling in the application:
+  parse(): Well suited if you are sure that the data is correct and if an exception on invalid data is helpful to indicate errors.
+  safeParse(): Provides a safer way to validate that checks the validation status without throwing an exception. This is particularly useful if you want to validate data without the need for exception handling or if you want to process the detailed validation error directly.
 
 #### Zod-to-Mongoose-Converter npm package
 

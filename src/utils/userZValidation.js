@@ -20,7 +20,7 @@ export const userZValidation = z.object({
   password: z
     .string()
     .min(8, { message: "must be at least 8 characters long" }),
-  role: z.enum(["admin", "user"]).default("user"),
+  role: z.enum(["admin", "user", "falconer"]).default("user"),
   favoriteRaptors: z
     .array(
       z.string().regex(/^[0-9a-fA-F]{24}$/, { message: "Invalid ObjectId" })

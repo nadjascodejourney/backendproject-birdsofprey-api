@@ -10,14 +10,20 @@ import {
   /* addMultipleRaptors, */
 } from "../controllers/raptorsController.js";
 
+import { accessTokenCheck } from "../utils/accessTokenCheck.js";
+import { roleCheck } from "../utils/roleCheck.js";
+
 export const raptorsRouter = express.Router();
 
-raptorsRouter.route("/").get(getAllRaptors).post(addRaptor);
+raptorsRouter
+  .route("/")
+  .get(getAllRaptors)
+  .post(accessTokenCheck, roleCheck(["falconer", "admin"]), addRaptor);
 
 raptorsRouter
   .route("/:id")
   .get(getRaptorById)
-  .delete(deleteRaptorById)
-  .patch(updateRaptorById);
+  .delete(accessTokenCheck, roleCheck("admin"), deleteRaptorById)
+  .patch(accessTokenCheck, roleCheck("admin"), updateRaptorById);
 
 /* raptorsRouter.route("/batch").post(addMultipleRaptors);*/

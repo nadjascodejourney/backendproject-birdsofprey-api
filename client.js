@@ -7,7 +7,7 @@ const CLIENTPORT = 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-// Route für die E-Mail-Verifizierung
+// Route for E-Mail verification
 app.get("/veri", async (req, res) => {
   const token = req.query.token;
   console.log(token);
@@ -17,7 +17,7 @@ app.get("/veri", async (req, res) => {
   }
 
   try {
-    // Weiterleiten der Anfrage an den Backend-Server
+    // Request to the server to verify the email
     const response = await axios.get(
       `http://localhost:5000/veri?token=${token}`
     );

@@ -10,7 +10,9 @@ export const accessTokenCheck = async (req, res, next) => {
     const authorization = req.cookies["accessToken"];
 
     if (!authorization) {
-      return res.sendStatus(401);
+      return res.status(401).json({
+        message: "You need to be logged in.",
+      }); // 401 Unauthorized
     }
 
     jwt.verify(authorization, secretKey, async (error, decoded) => {

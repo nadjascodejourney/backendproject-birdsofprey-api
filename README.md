@@ -56,3 +56,5 @@ node client.js
 ´´´
 
 ```
+
+This project also contains a notes.md file in which I have recorded many notes, learnings and helpful information about this project or individual steps.

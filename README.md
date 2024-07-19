@@ -27,3 +27,32 @@ This repository contains the backend for an API managing information about birds
 ## Simplified Flowchart
 
 ![Flowchart](Flowchart-simplified.png)
+
+## How to install and run this project locally
+
+If you´d like to take a deeper look into this project, follow these steps:
+
+1. **Clone or Fork the Repository** and navigate to the project
+
+Please note that at the moment the project will not work completely on your computer without an own database connection to MongoDB.
+If you want to try it out yourself with your own data, you need an account with MongoDB.
+However, you are welcome to clone the project to get a deeper insight into the code.
+
+2. **Install the Dependencies** with the node package manager by running the following commands:
+
+```js
+npm install
+´´´
+```
+
+You also need a fake account with Etheral to test the email verification. To test the API Requests, I recommend using Postman. Postman is a popular collaboration platform for API development that simplifies the process of building, testing, and documenting APIs. I used it during Production and it was very helpful. As an alternative, you can also try Thunderclient in VSCode.
+
+3. **Start the server and the client** in a respective terminal
+
+```js
+node server.js
+
+node client.js
+´´´
+
+```

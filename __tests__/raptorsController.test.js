@@ -1,10 +1,9 @@
 import supertest from "supertest";
 import mongoose from "mongoose";
-import express from "express";
 
 import { Raptor } from "../src/models/raptorModel.js";
 
-import app from "../server.js";
+import { app } from "../server.js";
 
 // Testdata
 const testData = [
